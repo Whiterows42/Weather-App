@@ -11,15 +11,15 @@ const getWeather = (city) => {
 
     fetch('https://weather-by-api-ninjas.p.rapidapi.com/v1/weather?city=' + city, options)
         .then(response => {
-            // if (!response.ok) {
-            //     throw new Error(`Bad response from server: ${response.status}`);
-            // }
+            if (!response.ok) {
+                throw new Error(`Bad response from server: ${response.status}`);
+            }
             return response.json();
         })
         .then(response => {
-            // if (!response) {
-            //     throw new Error("Response is undefined");
-            // }
+            if (!response) {
+                throw new Error("Response is undefined");
+            }
 
             const unixTimestamp = response.sunset;
             const sunsetTime = new Date(unixTimestamp * 1000);
